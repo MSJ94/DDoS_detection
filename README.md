@@ -9,7 +9,7 @@ Software Defined Networking (SDN) emerged out as an alternative of the tradition
  - Eclipse (IDE for Java) (optional)
 
 #### Description 
-The project works with Floodlight acting in 'hub' mode i.e. all the packets are transmitted from the switch to the controller.
+The project works with Floodlight acting in 'hub' mode i.e. all the packets are transmitted from the switch to the controller. Administrator has to provide a file consisiting of all the server's IP address to the CDM class.
 The module consists of two classes :
  - **CDM** (Collection,Detection and Mitigation) class for collecting data and running the detection algorithm every 15 sec and finally running the mitigation process if any attack is detected.
  - **Server** class for storing the server IP and the host associated with the server.
