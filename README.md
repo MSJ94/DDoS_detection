@@ -23,7 +23,9 @@ A thread is created which runs in every 15 seconds and collect the count of SYN 
  - For each flag : Prob = Count/(Total Flag Count)
                 Calculate Prob*log(Prob)/log 2
  - Take the sum of the above value for all the three flag. This is the Entropy value.
- In the TCP case, the ﬂags SYN, SYN-ACK, and ACK have the same probability of appearing for the connection establishment phase. An attack would decrease entropy. If the entropy is below a fixed value , then an attack is declared and mitigation procedure is started.
+
+In the TCP case, the ﬂags SYN, SYN-ACK, and ACK have the same probability of appearing for the connection establishment phase. An attack would decrease entropy. If the entropy is below a fixed value , then an attack is declared and mitigation procedure is started.
+ 
 ##### Mitigation Process
 Mitigation is performed using the Static Entry Pusher of the floodlight. The server-host pair for which the attack is detected will be blocked.All the traffic from that host IP to that server IP is dropped at the switch. After 2 minutes that flow rule is deleted from the switch if it is not already removed by IDLE_TIMEOUT.
 
