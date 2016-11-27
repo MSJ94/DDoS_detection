@@ -20,7 +20,7 @@ Then after that information about the TCP flag is extracted from the packet and 
 
 ##### Detection Algorithm
 A thread is created which runs in every 15 seconds and collect the count of SYN , SYN-ACK and ACK flag of TCP for every host and server pair and calculate the entropy in the following way:
- - For each flag : Prob = Count/(Total Flag Count)
+ - For each flag : Prob = Count/(Total Flag Count), Then 
                 Calculate Prob*log(Prob)/log 2
  - Take the sum of the above value for all the three flag. This is the Entropy value.
 
