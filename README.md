@@ -19,10 +19,11 @@ When any packet arrives at the controller, source and destination IP address are
 Then after that information about the TCP flag is extracted from the packet and is updated to the appropriate host associated with server. 
 
 ##### Detection Algorithm
-A thread is created which runs in every 15 seconds and collect the count of SYN , SYN-ACK and FIN flag of TCP for every host and server pair and calculate the entropy using the following formula:
-![equation](http://mathurl.com/render.cgi?-%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%20P_i%20*%20log_2%20P_i%5Cnocache)
-where P is the probability of the element i.e. the number of occurences divided by total.
- In the TCP case, the ﬂags SYN, SYN-ACK, and FIN have the same probability of appearing. An attack would decrease entropy. If the entropy is below a fixed value , then an attack is declared and mitigation procedure is started.
+A thread is created which runs in every 15 seconds and collect the count of SYN , SYN-ACK and ACK flag of TCP for every host and server pair and calculate the entropy in the following way:
+For each flag : Prob = Count/(Total Flag Count)
+                Calculate Prob*log(Prob)/log 2
+Take the sum of the above value for all the three flag. This is the Entropy value.
+ In the TCP case, the ﬂags SYN, SYN-ACK, and ACK have the same probability of appearing for the connection establishment phase. An attack would decrease entropy. If the entropy is below a fixed value , then an attack is declared and mitigation procedure is started.
 ##### Mitigation Process
 Mitigation is performed using the Static Entry Pusher of the floodlight. The server-host pair for which the attack is detected will be blocked.All the traffic from that host IP to that server IP is dropped at the switch. After 2 minutes that flow rule is deleted from the switch if it is not already removed by IDLE_TIMEOUT.
 
